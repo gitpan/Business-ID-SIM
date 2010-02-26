@@ -2,11 +2,9 @@
 
 use strict;
 use warnings;
-use Test::More tests => 16;
+use Test::More tests => 15;
 
-BEGIN {
-    use_ok( 'Business::ID::SIM' );
-}
+use Business::ID::SIM;
 
 ok(!(validate_sim("") ? 1:0), "procedural style (1)");
 ok((validate_sim("0101 06 00 0001") ? 1:0), "procedural style (2)");

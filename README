@@ -1,46 +1,140 @@
-Business-ID-SIM
+NAME
+    Business::ID::SIM - Validate Indonesian driving license number (nomor
+    SIM)
 
-This module can be used to validate Indonesian driving license number,
-Nomor Surat Izin Mengemudi (SIM).
+VERSION
+    version 0.02
 
-INSTALLATION
+SYNOPSIS
+        use Business::ID::SIM;
+    
+        # OO-style
 
-To install this module, run the following commands:
+        my $sim = Business::ID::SIM->new($str);
+        die "Invalid SIM!" unless $sim->validate;
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+        print $sim->year_of_birth, "\n"; # also, yob()
+        print $sim->mon_of_birth, "\n"; # also, mob()
+        print $sim->area_code, "\n";
+        print $sim->serial, "\n";
 
-SUPPORT AND DOCUMENTATION
+        # procedural style
 
-After installing, you can find documentation for this module with the
-perldoc command.
+        validate_sim($str) or die "Invalid SIM!";
 
-    perldoc Business::ID::SIM
+DESCRIPTION
+    This module can be used to validate Indonesian driving license number,
+    Nomor Surat Izin Mengemudi (SIM).
 
-You can also look for information at:
+    SIM is composed of 12 digits as follow:
 
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Business-ID-SIM
+     yymm.pp.aa.ssss
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Business-ID-SIM
+    yy and mm are year and month of birth, pp and aa are area code
+    (province+district of some sort), ssss is 4-digit serial most probably
+    starting from 1.
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Business-ID-SIM
+    Note that there are several kinds of SIM (A, B1, B2, C) but this is not
+    encoded in the SIM number and all SIM's have the same number.
 
-    Search CPAN
-        http://search.cpan.org/dist/Business-ID-SIM/
+METHODS
+  new $str
+    Create a new "Business::ID::SIM" object.
 
+  validate()
+    Return true if SIM is valid, or false if otherwise. In the case of SIM
+    being invalid, you can call the errstr() method to get a description of
+    the error.
 
-COPYRIGHT AND LICENCE
+  errstr()
+    Return validation error of SIM, or undef if no error is found. See
+    "validate()".
 
-Copyright (C) 2009 Steven Haryanto
+  normalize()
+    Return formatted SIM, or undef if SIM is invalid.
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+  pretty()
+    Alias for normalize().
 
-See http://dev.perl.org/licenses/ for more information.
+  area_code()
+    Return 4-digit 'province'+district code component of SIM.
+
+  year_of_birth()
+    Return year component of the SIM, already added with the century, or
+    undef if SIM is invalid.
+
+  yob()
+    Alias for year_of_birth()
+
+  month_of_birth()
+    Return month component of the SIM, or undef if SIM is invalid.
+
+  mob()
+    Alias for month_of_birth().
+
+  serial()
+    Return 4-digit serial component of SIM, or undef if SIM is invalid.
+
+FUNCTIONS
+  validate_sim($string)
+    Return true if SIM is valid, or false if otherwise. If you want to know
+    the error details, you need to use the OO version (see the "errstr"
+    method).
+
+    Exported by default.
+
+AUTHOR
+    Steven Haryanto, "<stevenharyanto at gmail.com>"
+
+BUGS
+    The list of valid 'province' codes in the program might need to be
+    updated from time to time.
+
+    Please report any bugs or feature requests to "bug-business-id-sim at
+    rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Business-ID-SIM>. I will
+    be notified, and then you'll automatically be notified of progress on
+    your bug as I make changes.
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc Business::ID::SIM
+
+    You can also look for information at:
+
+    *   RT: CPAN's request tracker
+
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Business-ID-SIM>
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/Business-ID-SIM>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/Business-ID-SIM>
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/Business-ID-SIM/>
+
+ACKNOWLEDGEMENTS
+COPYRIGHT & LICENSE
+    Copyright 2009 Steven Haryanto.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of either: the GNU General Public License as published
+    by the Free Software Foundation; or the Artistic License.
+
+    See http://dev.perl.org/licenses/ for more information.
+
+AUTHOR
+      Steven Haryanto <stevenharyanto@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2010 by Steven Haryanto.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 

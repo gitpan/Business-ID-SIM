@@ -3,24 +3,12 @@ NAME
     SIM)
 
 VERSION
-    version 0.02
+    version 0.03
 
 SYNOPSIS
-        use Business::ID::SIM;
-    
-        # OO-style
+     use Business::ID::SIM qw(parse_sim);
 
-        my $sim = Business::ID::SIM->new($str);
-        die "Invalid SIM!" unless $sim->validate;
-
-        print $sim->year_of_birth, "\n"; # also, yob()
-        print $sim->mon_of_birth, "\n"; # also, mob()
-        print $sim->area_code, "\n";
-        print $sim->serial, "\n";
-
-        # procedural style
-
-        validate_sim($str) or die "Invalid SIM!";
+     my $res = parse_sim(sim => "0113 40 00 0001");
 
 DESCRIPTION
     This module can be used to validate Indonesian driving license number,
@@ -37,104 +25,31 @@ DESCRIPTION
     Note that there are several kinds of SIM (A, B1, B2, C) but this is not
     encoded in the SIM number and all SIM's have the same number.
 
-METHODS
-  new $str
-    Create a new "Business::ID::SIM" object.
-
-  validate()
-    Return true if SIM is valid, or false if otherwise. In the case of SIM
-    being invalid, you can call the errstr() method to get a description of
-    the error.
-
-  errstr()
-    Return validation error of SIM, or undef if no error is found. See
-    "validate()".
-
-  normalize()
-    Return formatted SIM, or undef if SIM is invalid.
-
-  pretty()
-    Alias for normalize().
-
-  area_code()
-    Return 4-digit 'province'+district code component of SIM.
-
-  year_of_birth()
-    Return year component of the SIM, already added with the century, or
-    undef if SIM is invalid.
-
-  yob()
-    Alias for year_of_birth()
-
-  month_of_birth()
-    Return month component of the SIM, or undef if SIM is invalid.
-
-  mob()
-    Alias for month_of_birth().
-
-  serial()
-    Return 4-digit serial component of SIM, or undef if SIM is invalid.
-
-FUNCTIONS
-  validate_sim($string)
-    Return true if SIM is valid, or false if otherwise. If you want to know
-    the error details, you need to use the OO version (see the "errstr"
-    method).
-
-    Exported by default.
-
 AUTHOR
-    Steven Haryanto, "<stevenharyanto at gmail.com>"
-
-BUGS
-    The list of valid 'province' codes in the program might need to be
-    updated from time to time.
-
-    Please report any bugs or feature requests to "bug-business-id-sim at
-    rt.cpan.org", or through the web interface at
-    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Business-ID-SIM>. I will
-    be notified, and then you'll automatically be notified of progress on
-    your bug as I make changes.
-
-SUPPORT
-    You can find documentation for this module with the perldoc command.
-
-        perldoc Business::ID::SIM
-
-    You can also look for information at:
-
-    *   RT: CPAN's request tracker
-
-        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=Business-ID-SIM>
-
-    *   AnnoCPAN: Annotated CPAN documentation
-
-        <http://annocpan.org/dist/Business-ID-SIM>
-
-    *   CPAN Ratings
-
-        <http://cpanratings.perl.org/d/Business-ID-SIM>
-
-    *   Search CPAN
-
-        <http://search.cpan.org/dist/Business-ID-SIM/>
-
-ACKNOWLEDGEMENTS
-COPYRIGHT & LICENSE
-    Copyright 2009 Steven Haryanto.
-
-    This program is free software; you can redistribute it and/or modify it
-    under the terms of either: the GNU General Public License as published
-    by the Free Software Foundation; or the Artistic License.
-
-    See http://dev.perl.org/licenses/ for more information.
-
-AUTHOR
-      Steven Haryanto <stevenharyanto@gmail.com>
+    Steven Haryanto <stevenharyanto@gmail.com>
 
 COPYRIGHT AND LICENSE
-    This software is copyright (c) 2010 by Steven Haryanto.
+    This software is copyright (c) 2013 by Steven Haryanto.
 
     This is free software; you can redistribute it and/or modify it under
     the same terms as the Perl 5 programming language system itself.
+
+FUNCTIONS
+    None are exported by default, but they are exportable.
+
+  parse_sim(%args) -> [status, msg, result, meta]
+    Arguments ('*' denotes required arguments):
+
+    *   sim* => *str*
+
+        Input to be parsed.
+
+    Return value:
+
+    Returns an enveloped result (an array). First element (status) is an
+    integer containing HTTP status code (200 means OK, 4xx caller error, 5xx
+    function error). Second element (msg) is a string containing error
+    message, or 'OK' if status is 200. Third element (result) is optional,
+    the actual result. Fourth element (meta) is called result metadata and
+    is optional, a hash that contains extra information.
 

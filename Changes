@@ -1,8 +1,18 @@
 Revision history for Business-ID-SIM
 
-0.02    2020-02-26
-        Generate META.yml (using Dist::Zilla)
+0.03    2013-09-09 (SHARYANTO)
 
-0.01    2009-10-06
-        First version, released on an unsuspecting world.
+        [INCOMPATIBLE CHANGES]
 
+        - Replace old interface (validate_sim() + OO interface) with Rinci-based
+          parse_sim().
+
+
+0.02    2010-02-26 (SHARYANTO)
+
+        - Generate META.yml (using Dist::Zilla)
+
+
+0.01    2009-10-06 (SHARYANTO)
+
+        - First version, released on an unsuspecting world.

@@ -7,9 +7,11 @@ BEGIN {
   }
 }
 
+
 use Test::More;
 
-eval "use Test::Pod 1.41";
-plan skip_all => "Test::Pod 1.41 required for testing POD" if $@;
+eval "use Test::Rinci 0.01";
+plan skip_all => "Test::Rinci 0.01 required for testing Rinci metadata"
+  if $@;
 
-all_pod_files_ok();
+metadata_in_all_modules_ok();

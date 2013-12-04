@@ -34,7 +34,8 @@ done_testing;
 sub test_parse {
     my %args = @_;
 
-    state $cleanser = Data::Clean::JSON->new;
+    # just to convert DateTime object to Unix time
+    state $cleanser = Data::Clean::JSON->get_cleanser;
 
     subtest +($args{name} //= "sim $args{sim}"), sub {
         my $res = $cleanser->clean_in_place(parse_sim(sim => $args{sim}));

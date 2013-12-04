@@ -1,5 +1,10 @@
 Revision history for Business-ID-SIM
 
+0.04    2013-12-04 (SHARYANTO)
+
+        - No functional changes. Use Data::Clean::JSON 0.11's get_cleanser().
+
+
 0.03    2013-09-09 (SHARYANTO)
 
         [INCOMPATIBLE CHANGES]

@@ -3,7 +3,7 @@ NAME
     SIM)
 
 VERSION
-    version 0.03
+    version 0.04
 
 SYNOPSIS
      use Business::ID::SIM qw(parse_sim);
@@ -25,15 +25,6 @@ DESCRIPTION
     Note that there are several kinds of SIM (A, B1, B2, C) but this is not
     encoded in the SIM number and all SIM's have the same number.
 
-AUTHOR
-    Steven Haryanto <stevenharyanto@gmail.com>
-
-COPYRIGHT AND LICENSE
-    This software is copyright (c) 2013 by Steven Haryanto.
-
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as the Perl 5 programming language system itself.
-
 FUNCTIONS
     None are exported by default, but they are exportable.
 
@@ -52,4 +43,28 @@ FUNCTIONS
     message, or 'OK' if status is 200. Third element (result) is optional,
     the actual result. Fourth element (meta) is called result metadata and
     is optional, a hash that contains extra information.
+
+HOMEPAGE
+    Please visit the project's homepage at
+    <https://metacpan.org/release/Business-ID-SIM>.
+
+SOURCE
+    Source repository is at
+    <https://github.com/sharyanto/perl-Business-ID-SIM>.
+
+BUGS
+    Please report any bugs or feature requests on the bugtracker website
+    <https://rt.cpan.org/Public/Dist/Display.html?Name=Business-ID-SIM>
+
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
+
+AUTHOR
+    Steven Haryanto <stevenharyanto@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2013 by Steven Haryanto.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
 
